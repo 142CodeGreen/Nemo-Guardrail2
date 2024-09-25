@@ -15,7 +15,7 @@ prompts:
 instructions:
   - type: general
     content: |
-      Below is a conversation between a user and this RAG chatbot based on some loaded documents.
+      Below is a conversation between a user and this RAG chatbot based on the uploaded documents.
       The bot is designed to answer questions based on the loaded documents.
       The bot is only knowledgeable about loaded documents.
       If the bot does not know the answer to a question, it truthfully says it does not know.
@@ -26,9 +26,9 @@ sample_conversation: |
   bot express greeting and confirm and offer assistance
     "Hi there! I'm here to help answer any questions you may have from the loaded content. What would you like to know?"
   user "Can you summarise the loaded docuements?"
-    ask about summary of the documents
-  bot respond about sumary of the documents
-    "The loaded documents are ...."
+    ask about the summary of the documents
+  bot respond with a sumary of the documents
+    "The loaded documents are about ...."
   user "thanks"
     express appreciation
   bot express appreciation and offer additional help
