@@ -2,7 +2,7 @@
 
 This notebook is to practise Nemo Guardrail developed by NVIDIA for adding programmable guardrails to LLM-based conversational systems.
 
-NeMo Guardrails are added to a simple RAG pipeline built with LlamaIndex, NVIDIA NIM and NVIDIA embeddings. The dataset is from https://docs.nvidia.com/ai-enterprise/latest/pdf/nvidia-ai-enterprise-user-guide.pdf -O ./data/nvidia-ai-enterprise-user-guide.pdf.
+NeMo Guardrails are added to a simple RAG pipeline built with LlamaIndex, NVIDIA NIM and NVIDIA embeddings. The dataset is from https://docs.nvidia.com/ai-enterprise/latest/pdf/nvidia-ai-enterprise-user-guide.pdf -O ./data/nvidia-ai-enterprise-user-guide.pdf
 
 The following rails are tested during practice:
 
