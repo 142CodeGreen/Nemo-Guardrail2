@@ -3,15 +3,6 @@ models:
     engine: nvidia_ai_endpoints
     model: meta/llama3-8b-instruct
 
-prompts:
-  - role: user
-    content: |
-      {{rail_context}}
-      {{user_message}}
-  - role: assistant
-    content: |
-      {{agent_response}}
-
 instructions:
   - type: general
     content: |
