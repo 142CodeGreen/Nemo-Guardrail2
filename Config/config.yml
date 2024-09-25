@@ -1,0 +1,27 @@
+models:
+  - type: main
+    engine: nim
+    model: meta/llama3-8b-instruct
+
+rails:
+  # Input rails are invoked when new input from the user is received.
+  input:
+    flows:
+      - check jailbreak
+      - mask sensitive data on input
+
+  # Output rails are triggered after a bot message has been generated.
+  output:
+    flows:
+      - self check facts
+      - self check hallucination
+      - activefence moderation
+      - gotitai rag truthcheck
+
+  config:
+    # Configure the types of entities that should be masked on user input.
+    sensitive_data_detection:
+      input:
+        entities:
+          - PERSON
+          - EMAIL_ADDRESS
