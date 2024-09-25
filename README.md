@@ -2,9 +2,16 @@
 
 This notebook is to practise Nemo Guardrail developed by NVIDIA for easily adding programmable guardrails to LLM-based conversational systems.
 
-We will explore how to add NeMo Guardrails to an RAG pipeline built with with LlamaIndex, NVIDIA NIM and NVIDIA embeddings. The dataset is https://docs.nvidia.com/ai-enterprise/latest/pdf/nvidia-ai-enterprise-user-guide.pdf -O ./data/nvidia-ai-enterprise-user-guide.pdf.
+NeMo Guardrails are added to a simple RAG pipeline built with with LlamaIndex, NVIDIA NIM and NVIDIA embeddings. The dataset is from https://docs.nvidia.com/ai-enterprise/latest/pdf/nvidia-ai-enterprise-user-guide.pdf -O ./data/nvidia-ai-enterprise-user-guide.pdf.
 
-## Installation
+The following rails are tested during practice:
+
+- Input rails
+- Dialog rails
+- Execution rails
+- Output rails
+
+## Environment Installation
 ```
 %pip install llama-index-core==0.10.50
 %pip install llama-index-readers-file==0.1.25
