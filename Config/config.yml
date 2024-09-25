@@ -30,7 +30,6 @@ rails:
   input:
     flows:
       - self check input
-      - check jailbreak
       - mask sensitive data on input
 
   # Output rails are triggered after a bot message has been generated.
@@ -38,8 +37,6 @@ rails:
     flows:
       - self check output
       - self check hallucination
-      - activefence moderation
-      - gotitai rag truthcheck
 
   config:
     # Configure the types of entities that should be masked on user input.
