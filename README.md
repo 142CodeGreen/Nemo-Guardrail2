@@ -1,6 +1,6 @@
 # Nemo-Guardrail
 
-This notebook is to practise Nemo Guardrail developed by NVIDIA for adding programmable guardrails to LLM-based conversational systems.
+This notebook is to practise Nemo Guardrail developed by NVIDIA for adding programmable guardrails to LLM-based conversational systems. This is aimed to steer chatbot conversations towards specific topics, hallucination prevention, reducing the generation of factually incorrect or nonsensical content, and response shaping.
 
 NeMo Guardrails are added to a simple RAG pipeline built with LlamaIndex, NVIDIA NIM and NVIDIA embeddings. The dataset is from https://docs.nvidia.com/ai-enterprise/latest/pdf/nvidia-ai-enterprise-user-guide.pdf. 
 
