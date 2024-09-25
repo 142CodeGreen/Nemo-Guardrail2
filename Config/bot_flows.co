@@ -16,8 +16,7 @@ define flow user query
   $answer = execute user_query
   bot $answer
 
-define flow answer report question
-  user ...
+define flow self check hallucinations
   $answer = execute rag()
   $check_hallucination = True
   bot $answer
