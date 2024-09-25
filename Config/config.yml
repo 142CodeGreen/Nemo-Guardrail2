@@ -35,12 +35,5 @@ rails:
   output:
     flows:
       - self check output
-      - self check hallucination
-
-  config:
-    # Configure the types of entities that should be masked on user input.
-    sensitive_data_detection:
-      input:
-        entities:
-          - PERSON
-          - EMAIL_ADDRESS
+      - self check facts
+      
