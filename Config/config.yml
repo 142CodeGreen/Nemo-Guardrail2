@@ -38,13 +38,14 @@ rails:
   # Input rails are invoked when new input from the user is received.
   input:
     flows:
+      - self check input
       - check jailbreak
       - mask sensitive data on input
 
   # Output rails are triggered after a bot message has been generated.
   output:
     flows:
-      - self check facts
+      - self check output
       - self check hallucination
       - activefence moderation
       - gotitai rag truthcheck
