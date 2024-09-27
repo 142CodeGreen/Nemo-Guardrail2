@@ -1,3 +1,14 @@
+```
+title: RAG With Guardrails
+emoji: 🔥
+colorFrom: indigo
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+```
+
 # Nemo-Guardrail
 
 This notebook is to practise Nemo Guardrail developed by NVIDIA for adding programmable guardrails to LLM-based conversational systems. This is aimed to steer chatbot conversations towards specific topics, hallucination prevention, reducing the generation of factually incorrect or nonsensical content, and response shaping.
