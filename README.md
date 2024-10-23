@@ -17,8 +17,8 @@ The following rails are tested during practice:
 
 1. Clone the repository:
 ```
-git clone https://github.com/142CodeGreen/RAG-with-NeMo-Guardrails.git
-cd RAG-with-NeMo-Guardrails
+git clone https://github.com/142CodeGreen/Nemo-Guardrail2.git
+cd Nemo-Guardrail2
 ```
 
 2. Install the required packages:
