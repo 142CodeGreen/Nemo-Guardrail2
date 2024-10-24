@@ -11,7 +11,7 @@ import openai
 #if not os.environ.get("NVIDIA_API_KEY", "").startswith("nvapi-"):
 #    raise ValueError("Please set the NVIDIA_API_KEY environment variable.")
 
-from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex, StorageContext
+from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex, StorageContext, ServiceContext
 from llama_index.llms.nvidia import NVIDIA
 Settings.llm = NVIDIA(model="meta/llama-3.1-8b-instruct")
 
@@ -82,6 +82,24 @@ def load_documents(file_objs):
 #    except Exception as e:
 #        return history + [(message,f"Error processing query: {str(e)}")]
 
+# Function for RAG with Llamaindex
+def rag(message, history):
+    global query_engine
+    if query_engine is None:
+        return "Please upload a file first."
+
+    try:
+        # Create a service context with LLM
+        service_context = ServiceContext.from_defaults(llm=Settings.llm)
+
+        # Use the query engine to get the response
+        response = query_engine.query(message, service_context=service_context)
+        return response.response  # Return the response text
+
+    except Exception as e:
+        return f"Error processing query: {str(e)}"
+
+# Function to stream responses
 def stream_response(message, history):
     global query_engine
     if query_engine is None:
