@@ -94,7 +94,7 @@ def rag(message, history):
 
         # Use the query engine to get the response
         response = query_engine.query(message, service_context=service_context)
-        return response.response  # Return the response text
+        return response  # Return the response text
 
     except Exception as e:
         return f"Error processing query: {str(e)}"
