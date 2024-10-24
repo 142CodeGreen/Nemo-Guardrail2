@@ -82,24 +82,41 @@ def chat(message,history):
     except Exception as e:
         return history + [(message,f"Error processing query: {str(e)}")]
 
-  # Function to stream responses
-def stream_response(message,history):
+def stream_response(message):
     global query_engine
     if query_engine is None:
-        yield history + [("Please upload a file first.",None)]
-        return
-
+        return history + [("Please upload a file first.", None)]
     try:
-        response = query_engine.query(message)
-        partial_response = ""
-        for text in response.response_gen:
-            partial_response += text
-            yield history + [(message,partial_response)]
+        user_message = {"role": "user", "content": message}
+        response_stream = rails.generate(messages=[user_message], streaming=True) # Assuming rails.generate can return a stream of responses with streaming=True
+
+        for chunk in response_stream:
+            # process the response chunk 
+            # do something with the chunk
+            yield history + [(message, chunk['content'])]
+
     except Exception as e:
         yield history + [(message, f"Error processing query: {str(e)}")]
 
 
-# Create the Gradio interface
+  # Function to stream responses
+#def stream_response(message,history):
+#    global query_engine
+#    if query_engine is None:
+#        yield history + [("Please upload a file first.",None)]
+#        return
+
+#    try:
+#        response = query_engine.query(message)
+#        partial_response = ""
+#        for text in response.response_gen:
+#            partial_response += text
+#            yield history + [(message,partial_response)]
+#    except Exception as e:
+#        yield history + [(message, f"Error processing query: {str(e)}")]
+
+
+#Create the Gradio interface
 with gr.Blocks() as demo:
   gr.Markdown("# RAG Chatbot for PDF Files")
 
@@ -113,7 +130,7 @@ with gr.Blocks() as demo:
   msg = gr.Textbox(label="Enter your question",interactive=True)
   clear = gr.Button("Clear")
 
-# Set up event handler (Event handlers should be defined within the 'with gr.Blocks() as demo:' block)
+ Set up event handler (Event handlers should be defined within the 'with gr.Blocks() as demo:' block)
   load_btn.click(load_documents, inputs=[file_input], outputs=[load_output])
   msg.submit(stream_response, inputs=[msg, chatbot], outputs=[chatbot]) # Use submit button instead of msg
   clear.click(lambda: None, None, chatbot, queue=False)
