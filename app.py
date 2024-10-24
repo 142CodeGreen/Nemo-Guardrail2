@@ -107,8 +107,8 @@ def stream_response(message, history):
         return
 
     try:
-        # 1. Get the initial response from the query engine
-        response = query_engine.query(message)  
+        # 1. Get the initial response from the rag()
+        response = rag(message, history)  
 
         # 2. Initialize variables for streaming
         partial_response = ""
