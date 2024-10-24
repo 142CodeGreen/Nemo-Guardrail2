@@ -82,40 +82,39 @@ def chat(message,history):
     except Exception as e:
         return history + [(message,f"Error processing query: {str(e)}")]
 
-#def stream_response(message):
-#    global query_engine
-#    if query_engine is None:
-#        return history + [("Please upload a file first.", None)]
-#    try:
-#        user_message = {"role": "user", "content": message}
-#        response_stream = rails.generate(messages=[user_message], streaming=True) # Assuming rails.generate can return a stream of responses with streaming=True
-
+def stream_response(message):
+    global query_engine
+    if query_engine is None:
+        return history + [("Please upload a file first.", None)]
+    try:
+        user_message = {"role": "user", "content": message}
+        response_stream = rails.generate(messages=[user_message], streaming=True) # Assuming rails.generate can return a stream of responses with streaming=True
+        yield history + [(message, rails_response['content'])
+                         
 #        for chunk in response_stream:
-            # process the response chunk 
-            # do something with the chunk
-            yield history + [(message, chunk['content'])]
+#            # process the response chunk 
+#            # do something with the chunk
+#            yield history + [(message, chunk['content'])]
 
-#    except Exception as e:
-#        yield history + [(message, f"Error processing query: {str(e)}")]
+    except Exception as e:
+         yield history + [(message, f"Error processing query: {str(e)}")]
 
 
   # Function to stream responses
-def stream_response(message,history):
-    global query_engine
-    if query_engine is None:
-        yield history + [("Please upload a file first.",None)]
-        return
+#def stream_response(message,history):
+#    global query_engine
+#    if query_engine is None:
+#        yield history + [("Please upload a file first.",None)]
+#        return
 
-    try:
-        user_message = {"role":"user","content":message}
-        response = rails.generate(messages=[user_message])
-        #response = query_engine.query(message)
-        partial_response = ""
-        for text in response.response_gen:
-            partial_response += text
-            yield history + [(message,partial_response)]
-    except Exception as e:
-        yield history + [(message, f"Error processing query: {str(e)}")]
+#    try:
+#        response = query_engine.query(message)
+#        partial_response = ""
+#        for text in response.response_gen:
+#            partial_response += text
+#            yield history + [(message,partial_response)]
+#    except Exception as e:
+#        yield history + [(message, f"Error processing query: {str(e)}")]
 
 
 #Create the Gradio interface
