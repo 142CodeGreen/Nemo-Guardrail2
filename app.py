@@ -11,7 +11,7 @@ import openai
 #if not os.environ.get("NVIDIA_API_KEY", "").startswith("nvapi-"):
 #    raise ValueError("Please set the NVIDIA_API_KEY environment variable.")
 
-from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex, StorageContext, ServiceContext
+from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex, StorageContext
 from llama_index.llms.nvidia import NVIDIA
 Settings.llm = NVIDIA(model="meta/llama-3.1-8b-instruct")
 
@@ -90,10 +90,11 @@ def rag(message, history):
 
     try:
         # Create a service context with LLM
-        service_context = ServiceContext.from_defaults(llm=Settings.llm)
+        #service_context = ServiceContext.from_defaults(llm=Settings.llm)
+        Settings.llm = NVIDIA(model="meta/llama-3.1-8b-instruct")
 
         # Use the query engine to get the response
-        response = query_engine.query(message, service_context=service_context)
+        response = query_engine.query(message)
         return response  # Return the response text
 
     except Exception as e:
