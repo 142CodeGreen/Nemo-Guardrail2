@@ -118,17 +118,16 @@ def stream_response(message):
 
 #Create the Gradio interface
 with gr.Blocks() as demo:
-  gr.Markdown("# RAG Chatbot for PDF Files")
+    gr.Markdown("# RAG Chatbot for PDF Files")
 
-  with gr.Row():
-      file_input = gr.File(label="Select files to upload", file_count="multiple")
-      load_btn = gr.Button("Load PDF Documents only")
+    with gr.Row():
+        file_input = gr.File(label="Select files to upload", file_count="multiple")
+        load_btn = gr.Button("Load PDF Documents only")
 
-  load_output = gr.Textbox(label="Load Status")
-
-  chatbot = gr.Chatbot()
-  msg = gr.Textbox(label="Enter your question",interactive=True)
-  clear = gr.Button("Clear")
+    load_output = gr.Textbox(label="Load Status")
+    chatbot = gr.Chatbot()
+    msg = gr.Textbox(label="Enter your question",interactive=True)
+    clear = gr.Button("Clear")
 
  # Set up event handler (Event handlers should be defined within the 'with gr.Blocks() as demo:' block)
   load_btn.click(load_documents, inputs=[file_input], outputs=[load_output])
