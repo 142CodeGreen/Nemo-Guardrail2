@@ -1,15 +1,15 @@
 # Import necessary libraries
-import getpass
+#import getpass
 import os
 import gradio as gr
 import openai
 
 # Set the environment variable using os.environ
-os.environ['NVIDIA_API_KEY'] = "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"
-os.environ['OPENAI_API_KEY'] = "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"
+#os.environ['NVIDIA_API_KEY'] = "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"
+#os.environ['OPENAI_API_KEY'] = "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"
 
-if not os.environ.get("NVIDIA_API_KEY", "").startswith("nvapi-"):
-    raise ValueError("Please set the NVIDIA_API_KEY environment variable.")
+#if not os.environ.get("NVIDIA_API_KEY", "").startswith("nvapi-"):
+#    raise ValueError("Please set the NVIDIA_API_KEY environment variable.")
 
 from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex, StorageContext
 from llama_index.llms.nvidia import NVIDIA
