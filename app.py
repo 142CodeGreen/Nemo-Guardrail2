@@ -97,7 +97,7 @@ def stream_response(message):
 #            yield history + [(message, chunk['content'])]
 
     except Exception as e:
-         yield history + [(message, f"Error processing query: {str(e)}")]
+        yield history + [(message, f"Error processing query: {str(e)}")]
 
 
   # Function to stream responses
