@@ -70,33 +70,63 @@ def load_documents(file_objs):
         return f"Error loading documents: {str(e)}"
 
   # Function to handle chat interactions
-def chat(message,history):
-    global query_engine
-    if query_engine is None:
-        return history + [("Please upload a file first.",None)]
-    try:
+#def chat(message,history):
+#    global query_engine
+#    if query_engine is None:
+#        return history + [("Please upload a file first.",None)]
+#    try:
         #modification for nemo guardrails ( next three rows)
-        user_message = {"role":"user","content":message}
-        response = rails.generate(messages=[user_message])
-        return history + [(message,response['content'])]
-    except Exception as e:
-        return history + [(message,f"Error processing query: {str(e)}")]
+#        user_message = {"role":"user","content":message}
+#        response = rails.generate(messages=[user_message])
+#        return history + [(message,response['content'])]
+#    except Exception as e:
+#        return history + [(message,f"Error processing query: {str(e)}")]
 
-  # Function to stream responses
-def stream_response(message,history):
+def stream_response(message, history):
     global query_engine
     if query_engine is None:
-        yield history + [("Please upload a file first.",None)]
+        yield history + [("Please upload a file first.", None)]
         return
 
     try:
-        response = query_engine.query(message)
+        # 1. Get the initial response from the query engine
+        response = query_engine.query(message)  
+
+        # 2. Initialize variables for streaming
         partial_response = ""
-        for text in response.response_gen:
-            partial_response += text
-            yield history + [(message,partial_response)]
+        
+        # 3. Iterate through the response generator
+        for text_chunk in response.response_gen:
+            # 4. Accumulate the response chunks
+            partial_response += text_chunk 
+
+            # 5. Apply Nemo Guardrails to the partial response
+            user_message = {"role": "user", "content": message}
+            bot_message = {"role": "bot", "content": partial_response}
+            rails_response = rails.generate(messages=[user_message, bot_message]) 
+
+            # 6. Yield the safe partial response from guardrails
+            yield history + [(message, rails_response['content'])] 
+
     except Exception as e:
         yield history + [(message, f"Error processing query: {str(e)}")]
+
+
+  # Function to stream responses
+#def stream_response(message,history):
+#    global query_engine
+#    if query_engine is None:
+#        yield history + [("Please upload a file first.",None)]
+#        return
+
+#    try:
+#        response = query_engine.query(message)
+#        partial_response = ""
+#        for text in response.response_gen:
+#            partial_response += text
+#            yield history + [(message,partial_response)]
+#    except Exception as e:
+#        yield history + [(message, f"Error processing query: {str(e)}")]
 
 
 #Create the Gradio interface
