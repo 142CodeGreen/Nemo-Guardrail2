@@ -27,7 +27,7 @@ Settings.text_splitter = SentenceSplitter(chunk_size=400)
 from nemoguardrails import LLMRails, RailsConfig
 
 # Define a RailsConfig object
-config = RailsConfig.from_path("./Nemo-Guardrail/Config")
+config = RailsConfig.from_path("./Config")
 rails = LLMRails(config)
 
 # Initialize global variables for the index and query engine
